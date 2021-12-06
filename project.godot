@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BridgeSegment",
+"language": "GDScript",
+"path": "res://rope_bridge/bridge_segment.gd"
+} ]
+_global_script_class_icons={
+"BridgeSegment": ""
+}
+
 [application]
 
 config/name="Godot recipes"

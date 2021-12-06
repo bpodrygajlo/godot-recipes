@@ -1,0 +1,246 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://rope_bridge/rope_bridge.gd" type="Script" id=1]
+[ext_resource path="res://rope_bridge/bridge_segment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://rope_bridge/KinematicBody2D.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 29.648
+height = 70.3345
+
+[node name="rope_bridge_test" type="Node2D"]
+
+[node name="bridge" type="Node2D" parent="."]
+position = Vector2( -141.271, 242.178 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../bridge_anchor")
+
+[node name="bridge_segment" parent="bridge" instance=ExtResource( 2 )]
+
+[node name="bridge_segment2" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 71.3864, -2.23148 )
+rotation = -0.031249
+
+[node name="bridge_segment3" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 142.773, -4.46295 )
+rotation = -0.0312489
+
+[node name="bridge_segment4" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 214.159, -6.69443 )
+rotation = -0.031249
+
+[node name="bridge_segment5" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 285.546, -8.92591 )
+rotation = -0.031249
+
+[node name="bridge_segment6" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 356.932, -11.1574 )
+rotation = -0.0312489
+
+[node name="bridge_segment7" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 428.319, -13.3889 )
+rotation = -0.0312489
+
+[node name="bridge_segment8" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 499.705, -15.6203 )
+rotation = -0.031249
+
+[node name="bridge_segment9" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 571.091, -17.8518 )
+rotation = -0.031249
+
+[node name="bridge_segment10" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 642.478, -20.0833 )
+rotation = -0.0312489
+
+[node name="bridge_segment11" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 713.864, -22.3148 )
+rotation = -0.0312489
+
+[node name="bridge_segment12" parent="bridge" instance=ExtResource( 2 )]
+position = Vector2( 785.251, -24.5462 )
+rotation = -2.8026e-45
+
+[node name="bridge_anchor" type="Node2D" parent="."]
+position = Vector2( 643.98, 217.632 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -30.086, 75.6061 )
+current = true
+zoom = Vector2( 2, 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 159.354, -195.03 )
+collision_layer = 2
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="icon" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 0, 33.145 )
+texture = ExtResource( 3 )
+
+[node name="bridge2" type="Node2D" parent="."]
+position = Vector2( -930.217, 419.074 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../anchor2")
+
+[node name="bridge_segment" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( -7.00649e-45, 7.00649e-45 )
+
+[node name="bridge_segment2" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 82.3698, 12.2141 )
+rotation = 0.147211
+
+[node name="bridge_segment3" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 164.74, 24.4281 )
+rotation = 0.147211
+
+[node name="bridge_segment4" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 247.109, 36.6422 )
+rotation = 0.147211
+
+[node name="bridge_segment5" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 329.479, 48.8563 )
+rotation = 0.147211
+
+[node name="bridge_segment6" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 411.849, 61.0703 )
+rotation = 0.147211
+
+[node name="bridge_segment7" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 494.219, 73.2844 )
+rotation = 0.147211
+
+[node name="bridge_segment8" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 576.589, 85.4985 )
+rotation = 0.147211
+
+[node name="bridge_segment9" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 658.958, 97.7125 )
+rotation = 0.14721
+
+[node name="bridge_segment10" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 741.328, 109.927 )
+rotation = 0.14721
+
+[node name="bridge_segment11" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 823.698, 122.141 )
+rotation = 0.147211
+
+[node name="bridge_segment12" parent="bridge2" instance=ExtResource( 2 )]
+position = Vector2( 906.068, 134.355 )
+rotation = -2.8026e-45
+
+[node name="anchor2" type="Node2D" parent="."]
+position = Vector2( -24.1483, 553.428 )
+
+[node name="bridge3" type="Node2D" parent="."]
+position = Vector2( -826.964, -219.785 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../bridge_anchor2")
+
+[node name="bridge_segment" parent="bridge3" instance=ExtResource( 2 )]
+
+[node name="bridge_segment2" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 142.197, 24.1341 )
+rotation = 0.168121
+
+[node name="bridge_segment3" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 284.394, 48.2683 )
+rotation = 0.168121
+
+[node name="bridge_segment4" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 426.591, 72.4024 )
+rotation = 0.168121
+
+[node name="bridge_segment5" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 568.787, 96.5365 )
+rotation = 0.168121
+
+[node name="bridge_segment6" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 710.984, 120.671 )
+rotation = 0.168121
+
+[node name="bridge_segment7" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 853.181, 144.805 )
+rotation = 0.168121
+
+[node name="bridge_segment8" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 995.378, 168.939 )
+rotation = 0.168121
+
+[node name="bridge_segment9" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 1137.57, 193.073 )
+rotation = 0.168121
+
+[node name="bridge_segment10" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 1279.77, 217.207 )
+rotation = 0.168121
+
+[node name="bridge_segment11" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 1421.97, 241.341 )
+rotation = 0.168121
+
+[node name="bridge_segment12" parent="bridge3" instance=ExtResource( 2 )]
+position = Vector2( 1564.17, 265.476 )
+rotation = -2.8026e-45
+
+[node name="bridge4" type="Node2D" parent="."]
+position = Vector2( -255.208, -288.147 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../anchor3")
+
+[node name="bridge_segment" parent="bridge4" instance=ExtResource( 2 )]
+
+[node name="bridge_segment2" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 87.1077, -2.77825 )
+rotation = -0.0318837
+
+[node name="bridge_segment3" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 174.215, -5.55651 )
+rotation = -0.0318837
+
+[node name="bridge_segment4" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 261.323, -8.33477 )
+rotation = -0.0318837
+
+[node name="bridge_segment5" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 348.431, -11.113 )
+rotation = -0.0318837
+
+[node name="bridge_segment6" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 435.539, -13.8913 )
+rotation = -0.0318837
+
+[node name="bridge_segment7" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 522.646, -16.6695 )
+rotation = -0.0318836
+
+[node name="bridge_segment8" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 609.754, -19.4478 )
+rotation = -0.0318837
+
+[node name="bridge_segment9" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 696.862, -22.226 )
+rotation = -0.0318837
+
+[node name="bridge_segment10" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 783.97, -25.0043 )
+rotation = -0.0318837
+
+[node name="bridge_segment11" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 871.077, -27.7825 )
+rotation = -0.0318837
+
+[node name="bridge_segment12" parent="bridge4" instance=ExtResource( 2 )]
+position = Vector2( 958.185, -30.5608 )
+rotation = -2.8026e-45
+
+[node name="anchor3" type="Node2D" parent="."]
+position = Vector2( 702.977, -318.708 )
+
+[node name="bridge_anchor2" type="Node2D" parent="."]
+position = Vector2( 737.202, 45.6907 )
