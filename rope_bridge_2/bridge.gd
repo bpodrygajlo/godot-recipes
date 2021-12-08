@@ -82,8 +82,12 @@ func update_bridge(_x = false):
 			var normal = (p2 - p0).normalized()
 			var length = (p2 - p0).length()
 			var center = normal * length / 2
+			
+			# limit the bend on the edges and increase it in the center
 			var dist_from_center = (bend_pos * normal - center).length()
-			var dist_factor = range_lerp(dist_from_center, 0, length/2, 1, 0.1)
+			var dist_factor = range_lerp(dist_from_center, 0, length/2, 1, 0.0)
+			dist_factor = max(0, dist_factor)
+			
 			p1 = bend_pos * normal + Vector2.DOWN * bend_factor * dist_factor
 			if debug:
 				update()
