@@ -1,0 +1,290 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://rope_bridge_2/bridge.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://rope_bridge_2/bridge_sprites.gd" type="Script" id=3]
+[ext_resource path="res://rope_bridge_2/bridge_sprite.gd" type="Script" id=4]
+[ext_resource path="res://rope_bridge_2/KinematicBody2D.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34.363, 34.2538 )
+
+[node name="test_scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 40.7288, 177.376 )
+current = true
+
+[node name="bridge" type="KinematicBody2D" parent="."]
+position = Vector2( -303.835, 211.991 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../anchor")
+bend_factor = 80
+
+[node name="sprites" type="Node2D" parent="bridge"]
+script = ExtResource( 3 )
+
+[node name="icon" type="Sprite" parent="bridge/sprites"]
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon3" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 60.354, 0.461545 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon4" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 120.708, 0.92309 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon12" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 181.062, 1.38464 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon13" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 241.416, 1.84618 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon15" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 301.77, 2.30773 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon14" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 362.124, 2.76927 )
+rotation = 12.574
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon9" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 422.478, 3.23082 )
+rotation = 6.29083
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon16" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 482.832, 3.69236 )
+rotation = 0.00764715
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon2" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 543.186, 4.15391 )
+rotation = 0.00764715
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon5" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 603.54, 4.61545 )
+rotation = 0.00764715
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon6" type="Sprite" parent="bridge/sprites"]
+position = Vector2( 663.894, 5.077 )
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bridge"]
+polygon = PoolVector2Array( 0, 0, 60.354, 0.461545, 120.708, 0.92309, 181.062, 1.38464, 241.416, 1.84618, 301.77, 2.30773, 362.124, 2.76927, 422.478, 3.23082, 482.832, 3.69236, 543.186, 4.15391, 603.54, 4.61545, 663.894, 5.077, 664.2, -34.9218, 603.846, -35.3834, 543.492, -35.8449, 483.138, -36.3065, 422.784, -36.768, 362.43, -37.2296, 302.076, -37.6911, 241.722, -38.1526, 181.368, -38.6142, 121.014, -39.0757, 60.6599, -39.5373, 0.305882, -39.9988 )
+one_way_collision = true
+one_way_collision_margin = 27.1
+
+[node name="anchor" type="Node2D" parent="."]
+position = Vector2( 360.059, 217.068 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( -149.866, -195.673 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="icon" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 2 )
+
+[node name="bridge2" type="KinematicBody2D" parent="."]
+position = Vector2( -473.349, 487.451 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../anchor2")
+bend_factor = 20
+
+[node name="sprites" type="Node2D" parent="bridge2"]
+script = ExtResource( 3 )
+
+[node name="icon" type="Sprite" parent="bridge2/sprites"]
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon3" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 80.5802, -5.70264 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon4" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 161.16, -11.4053 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon12" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 241.741, -17.1079 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon13" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 322.321, -22.8105 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon15" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 402.901, -28.5132 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon14" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 483.481, -34.2158 )
+rotation = 12.4957
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon9" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 564.061, -39.9185 )
+rotation = 6.21253
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon16" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 644.641, -45.6211 )
+rotation = -0.0706519
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon2" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 725.222, -51.3237 )
+rotation = -0.0706519
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon5" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 805.802, -57.0264 )
+rotation = -0.0706519
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon6" type="Sprite" parent="bridge2/sprites"]
+position = Vector2( 886.382, -62.729 )
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bridge2"]
+polygon = PoolVector2Array( 0, 0, 80.5802, -5.70264, 161.16, -11.4053, 241.741, -17.1079, 322.321, -22.8105, 402.901, -28.5132, 483.481, -34.2158, 564.061, -39.9185, 644.641, -45.6211, 725.222, -51.3237, 805.802, -57.0264, 886.382, -62.729, 883.558, -102.629, 802.978, -96.9266, 722.398, -91.2239, 641.818, -85.5213, 561.237, -79.8187, 480.657, -74.116, 400.077, -68.4134, 319.497, -62.7108, 238.917, -57.0081, 158.337, -51.3055, 77.7564, -45.6028, -2.82373, -39.9002 )
+one_way_collision = true
+one_way_collision_margin = 27.1
+
+[node name="anchor2" type="Node2D" parent="."]
+position = Vector2( 413.033, 424.722 )
+
+[node name="bridge3" type="KinematicBody2D" parent="."]
+position = Vector2( -300.66, -7.07031 )
+script = ExtResource( 1 )
+bridge_anchor = NodePath("../anchor3")
+bend_factor = 300
+
+[node name="sprites" type="Node2D" parent="bridge3"]
+script = ExtResource( 3 )
+
+[node name="icon" type="Sprite" parent="bridge3/sprites"]
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon3" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 66.6128, 1.15625 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon4" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 133.226, 2.3125 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon12" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 199.838, 3.46875 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon13" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 266.451, 4.625 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon15" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 333.064, 5.78125 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon14" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 399.677, 6.9375 )
+rotation = 12.5837
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon9" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 466.29, 8.09375 )
+rotation = 6.30054
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon16" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 532.903, 9.25 )
+rotation = 0.017356
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon2" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 599.515, 10.4063 )
+rotation = 0.017356
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon5" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 666.128, 11.5625 )
+rotation = 0.017356
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="icon6" type="Sprite" parent="bridge3/sprites"]
+position = Vector2( 732.741, 12.7188 )
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bridge3"]
+polygon = PoolVector2Array( 0, 0, 66.6128, 1.15625, 133.226, 2.3125, 199.838, 3.46875, 266.451, 4.625, 333.064, 5.78125, 399.677, 6.9375, 466.29, 8.09375, 532.903, 9.25, 599.515, 10.4063, 666.128, 11.5625, 732.741, 12.7188, 733.435, -27.2752, 666.822, -28.4315, 600.21, -29.5877, 533.597, -30.744, 466.984, -31.9002, 400.371, -33.0565, 333.758, -34.2127, 267.145, -35.369, 200.533, -36.5252, 133.92, -37.6815, 67.307, -38.8377, 0.694205, -39.994 )
+one_way_collision = true
+one_way_collision_margin = 27.1
+
+[node name="anchor3" type="Node2D" parent="."]
+position = Vector2( 432.081, 5.64844 )
+
+[connection signal="update_bridge" from="bridge/sprites" to="bridge" method="_on_sprites_update_bridge"]
+[connection signal="update_bridge" from="bridge2/sprites" to="bridge2" method="_on_sprites_update_bridge"]
+[connection signal="update_bridge" from="bridge3/sprites" to="bridge3" method="_on_sprites_update_bridge"]
