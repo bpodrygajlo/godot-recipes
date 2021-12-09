@@ -9,23 +9,26 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "Bezier",
+"language": "GDScript",
+"path": "res://common/bezier.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "BridgeSegment",
 "language": "GDScript",
 "path": "res://rope_bridge/bridge_segment.gd"
 } ]
 _global_script_class_icons={
+"Bezier": "",
 "BridgeSegment": ""
 }
 
 [application]
 
 config/name="Godot recipes"
+run/main_scene="res://rope_bridge_2/test_scene.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-Bezier="*res://common/bezier.gd"
 
 [physics]
 
