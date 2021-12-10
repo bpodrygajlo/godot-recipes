@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://coinflip/Camera.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 14.2805, 0.401557, 11.571 )
+
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 0.4
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.535685
+height = 0.147733
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45491, 6.07341 )
+current = true
+script = ExtResource( 1 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 0.948672, 0.316262, 0, -0.316262, 0.948672, 0, 0, 0, 1, 0, 3.28657, 0 )
+mass = 0.1
+physics_material_override = SubResource( 3 )
+linear_velocity = Vector3( 0, 30, 0 )
+linear_damp = 0.1
+angular_velocity = Vector3( 0, 0, 60 )
+angular_damp = 0.2
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 2 )
