@@ -12,6 +12,14 @@ export var bend_factor = 40
 # How thick is the bridge
 export var thickness = 40
 
+# ratio of bend on the edges
+export var edge_bend_factor = 0.0
+
+# determines where the bend stats working. E.g 0.9 means the outer 10% of each side
+# doesn't bend. Value of .8 means 20% of each side is not bendable
+export var edge_bend_cutoff = 0.8
+
+
 # to draw some debug info
 export var debug = false setget set_debug
 
@@ -84,9 +92,11 @@ func update_bridge(_x = false):
 			var center = normal * length / 2
 			
 			# limit the bend on the edges and increase it in the center
+			var dist_factor = 0.0
 			var dist_from_center = (bend_pos * normal - center).length()
-			var dist_factor = range_lerp(dist_from_center, 0, length/2, 1, 0.0)
-			dist_factor = max(0, dist_factor)
+			if dist_from_center/(length/2) < edge_bend_cutoff:
+				dist_factor = range_lerp(dist_from_center, 0, length/2, 1, edge_bend_factor)
+				dist_factor = max(0, dist_factor)
 			
 			p1 = bend_pos * normal + Vector2.DOWN * bend_factor * dist_factor
 			if debug:
@@ -114,14 +124,14 @@ func update_bridge(_x = false):
 						segments[segment_index]["length"],
 						0,
 						1)
-					$sprites.get_child(i).position = p1.linear_interpolate(p2, weight)
+					$sprites.get_child(i).target_position = p1.linear_interpolate(p2, weight)
 	
 	_update_rotation()
 
-var iter = 0
+
 func _physics_process(delta):
-	update_bridge()
-	if iter % 20 == 0:
+	if bend_pos == null:
+		update_bridge()
 		update_polygon()
 
 # rotates the bridge segments 
@@ -141,6 +151,8 @@ func _on_sprites_update_bridge():
 var bend_pos = null
 func bend(pos : Vector2):
 	bend_pos = to_local(pos)
+	update_bridge()
+	update_polygon()
 	
 func clear_bend():
 	bend_pos = null
