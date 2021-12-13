@@ -56,10 +56,9 @@ func create_polygon(_x = false):
 func update_polygon():
 	var anchor : Node2D = get_node_or_null(bridge_anchor)
 	if anchor:
-		var vertex_index = 0
+		var new_poly = []
 		for child in $sprites.get_children():
-			$CollisionPolygon2D.polygon[vertex_index] = child.position
-			vertex_index += 1
+			new_poly.append(child.position)
 		
 		var diff = $sprites.get_child($sprites.get_child_count() - 1).position - $sprites.get_child(0).position
 		var normal = diff.normalized()
@@ -67,9 +66,9 @@ func update_polygon():
 		
 		for i in range($sprites.get_child_count()):
 			var child = $sprites.get_child($sprites.get_child_count() - i - 1)
-			$CollisionPolygon2D.polygon[vertex_index] = \
-				child.position + surface_normal * thickness
-			vertex_index += 1
+			new_poly.append(child.position + surface_normal * thickness)
+			
+		$CollisionPolygon2D.polygon = new_poly
 		
 
 func update_bridge(_x = false):
