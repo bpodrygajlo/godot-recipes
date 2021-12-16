@@ -161,7 +161,7 @@ var bend_pos = null
 func bend(pos : Vector2):
 	var new_bend_pos = to_local(pos)
 	# Do not recalculate the polygon if the bend position is close to the previous bend position
-	if bend_pos == null or abs(new_bend_pos.x - bend_pos.x) > 1:
+	if bend_pos == null or abs(new_bend_pos.x - bend_pos.x) > 1 or bend_pos.y < new_bend_pos.y:
 		time_since_last_bend = 0
 		bend_pos = new_bend_pos
 		update_bridge()
