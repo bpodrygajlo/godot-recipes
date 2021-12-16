@@ -85,23 +85,29 @@ func update_bridge(_x = false):
 				pos += normal * segment_length
 		else:
 			p0 = $sprites.position
-			p2 = to_local(anchor.position)
-			var normal = (p2 - p0).normalized()
+			p2 = to_local(anchor.global_position)
+			var normal = p0.direction_to(p2)
 			var length = (p2 - p0).length()
 			var center = normal * length / 2
 			
 			# limit the bend on the edges and increase it in the center
 			var dist_factor = 0.0
-			var dist_from_center = (bend_pos * normal - center).length()
+			var dist_from_center = ((bend_pos.x - p0.x) * normal - center).length()
 			if dist_from_center/(length/2) < edge_bend_cutoff:
 				dist_factor = range_lerp(dist_from_center, 0, length/2, 1, edge_bend_factor)
 				dist_factor = max(0, dist_factor)
 			
-			p1 = bend_pos * normal + Vector2.DOWN * bend_factor * dist_factor
+			p1 = (bend_pos.x - p0.x) * normal + Vector2.DOWN * bend_factor * dist_factor
+			
 			if debug:
 				update()
 			
-			var nr_of_segments = 50
+			# This determines the amount of bezier segments to calculate and has
+			# big impact on perfromacne
+			# The bridge doesnt look good with little segments (tested with 5 and 10)
+			# TODO: either optimize this further or fix the display issue when there is
+			# few segments
+			var nr_of_segments = 15
 			var sprite_count = $sprites.get_child_count()
 			var segments = Bezier.quadratic_segments(p0, p1, p2, nr_of_segments)
 			var segment_length = segments[segments.size() - 1]["length"] / (sprite_count - 1)
@@ -128,8 +134,12 @@ func update_bridge(_x = false):
 	_update_rotation()
 
 
+var time_since_last_bend = 0
 func _physics_process(delta):
-	if bend_pos == null:
+	# Avoid recalculating the polygon if the bridge has already returned to its
+	# rest position. Assumption here is that it woudn't take more than 2 seconds
+	if bend_pos == null and time_since_last_bend < 2:
+		time_since_last_bend += delta
 		update_bridge()
 		update_polygon()
 
@@ -149,10 +159,14 @@ func _on_sprites_update_bridge():
 
 var bend_pos = null
 func bend(pos : Vector2):
-	bend_pos = to_local(pos)
-	update_bridge()
-	update_polygon()
-	
+	var new_bend_pos = to_local(pos)
+	# Do not recalculate the polygon if the bend position is close to the previous bend position
+	if bend_pos == null or abs(new_bend_pos.x - bend_pos.x) > 1:
+		time_since_last_bend = 0
+		bend_pos = new_bend_pos
+		update_bridge()
+		update_polygon()
+		
 func clear_bend():
 	bend_pos = null
 
@@ -161,6 +175,9 @@ func _draw():
 		draw_circle(p0, 10, Color.rebeccapurple)
 		draw_circle(p1, 10, Color.rebeccapurple)
 		draw_circle(p2, 10, Color.rebeccapurple)
+		draw_line(p0, p2, Color.aqua)
+		draw_line(p0, p1, Color.aqua)
+		draw_line(p2, p1, Color.aqua)
 
 func set_debug(_debug):
 	debug = _debug
