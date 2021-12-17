@@ -84,20 +84,20 @@ func update_bridge(_x = false):
 				child.set_target_position(pos)
 				pos += normal * segment_length
 		else:
-			p0 = $sprites.position
-			p2 = to_local(anchor.global_position)
+			p0 = $sprites.global_position
+			p2 = anchor.global_position
 			var normal = p0.direction_to(p2)
 			var length = (p2 - p0).length()
-			var center = normal * length / 2
+			var center = p0 + normal * length / 2
 			
 			# limit the bend on the edges and increase it in the center
 			var dist_factor = 0.0
-			var dist_from_center = ((bend_pos.x - p0.x) * normal - center).length()
+			var dist_from_center = abs(center.x - bend_pos.x)
 			if dist_from_center/(length/2) < edge_bend_cutoff:
 				dist_factor = range_lerp(dist_from_center, 0, length/2, 1, edge_bend_factor)
 				dist_factor = max(0, dist_factor)
 			
-			p1 = (bend_pos.x - p0.x) * normal + Vector2.DOWN * bend_factor * dist_factor
+			p1 = p0 + (bend_pos.x - p0.x) * normal + Vector2.DOWN * bend_factor * dist_factor
 			
 			if debug:
 				update()
@@ -121,15 +121,15 @@ func update_bridge(_x = false):
 				
 				if segment_index < nr_of_segments:	
 					# interpolate between the two points
-					var p1 : Vector2 = segments[segment_index-1]["pos"]
-					var p2 : Vector2 = segments[segment_index]["pos"]
+					var p1v : Vector2 = segments[segment_index-1]["pos"]
+					var p2v : Vector2 = segments[segment_index]["pos"]
 					var weight = range_lerp(
 						arc_length,
 						segments[segment_index-1]["length"],
 						segments[segment_index]["length"],
 						0,
 						1)
-					$sprites.get_child(i).target_position = p1.linear_interpolate(p2, weight)
+					$sprites.get_child(i).target_position = to_local(p1v.linear_interpolate(p2v, weight))
 	
 	_update_rotation()
 
@@ -159,7 +159,7 @@ func _on_sprites_update_bridge():
 
 var bend_pos = null
 func bend(pos : Vector2):
-	var new_bend_pos = to_local(pos)
+	var new_bend_pos = pos
 	# Do not recalculate the polygon if the bend position is close to the previous bend position
 	if bend_pos == null or abs(new_bend_pos.x - bend_pos.x) > 1 or bend_pos.y < new_bend_pos.y:
 		time_since_last_bend = 0
@@ -172,12 +172,12 @@ func clear_bend():
 
 func _draw():
 	if debug:
-		draw_circle(p0, 10, Color.rebeccapurple)
-		draw_circle(p1, 10, Color.rebeccapurple)
-		draw_circle(p2, 10, Color.rebeccapurple)
-		draw_line(p0, p2, Color.aqua)
-		draw_line(p0, p1, Color.aqua)
-		draw_line(p2, p1, Color.aqua)
+		draw_circle(to_local(p0), 10, Color.rebeccapurple)
+		draw_circle(to_local(p1), 10, Color.rebeccapurple)
+		draw_circle(to_local(p2), 10, Color.rebeccapurple)
+		draw_line(to_local(p0), to_local(p2), Color.aqua)
+		draw_line(to_local(p0), to_local(p1), Color.aqua)
+		draw_line(to_local(p2), to_local(p1), Color.aqua)
 
 func set_debug(_debug):
 	debug = _debug
